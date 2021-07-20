@@ -1,0 +1,12 @@
+github.com/go-noodle/adapt v0.0.0-20171224161848-57eb9beabc2f h1:bToErTFHUGiGbZli73NuaKtfvzh1Gh48mnDreSxy8Ok=
+github.com/go-noodle/adapt v0.0.0-20171224161848-57eb9beabc2f/go.mod h1:JPUHXH5aQyFdK67ytYY4GWG8Pyi8M4BnS9Xuoe2Yilg=
+github.com/go-noodle/middleware v0.0.0-20171224161924-90e544ca5b3d h1:asAdl7pjzHZv8FCszeg+6/Mq3OvDhI4ZBwZ94WGLnEg=
+github.com/go-noodle/middleware v0.0.0-20171224161924-90e544ca5b3d/go.mod h1:A3wpsuXdpgZXt/SJtFMllNUKAjUDGqOG8nUzII3IZ+8=
+github.com/go-noodle/noodle v0.0.0-20180314081423-c90fdeb956a9 h1:HlgtHrEEjocOJcx4HekVr1BtrdpcB/dZT7lhtyhLP08=
+github.com/go-noodle/noodle v0.0.0-20180314081423-c90fdeb956a9/go.mod h1:xUwRAhZJ+5nK7p1FgDGnFOqnIHwlu/jzGxMPvM2misk=
+github.com/go-noodle/store v0.0.0-20171224161946-46cde2e548fd h1:GRmm51zDf5Z95Ormwqv3glZauJADlAlYsmrS3SfX2DI=
+github.com/go-noodle/store v0.0.0-20171224161946-46cde2e548fd/go.mod h1:O8ygOshtgA3sg5AzwidLXw1ELiLF6Q+gfMjAJyqRyKk=
+github.com/gorilla/mux v1.8.0 h1:i40aqfkR1h2SlN9hojwV5ZA91wcXFOvkdNIeFDP5koI=
+github.com/gorilla/mux v1.8.0/go.mod h1:DVbg23sWSpFRCP0SfiEN6jmj59UnW/n46BH5rLB71So=
+gopkg.in/tylerb/is.v1 v1.1.2 h1:AB/MANFml2ySf+adwcinvajyHvsYltAOD+rb/8njfSU=
+gopkg.in/tylerb/is.v1 v1.1.2/go.mod h1:9yQB2tyIhZ5oph6Kk5Sq7cJMd9c5Jpa1p3hr9kxzPqo=
