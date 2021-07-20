@@ -14,9 +14,12 @@ func main() {
 
 	n := mw.Default(gorilla.Vars)
 
-	// Routers
-	r.Handle("/", n.Then(routers.Index))
+	r.Handle("/", n.Then(routers.Index)).Methods("GET")
+
 	r.Handle("/book/{id}", n.Then(routers.GetBook)).Methods("GET")
+	r.Handle("/book", n.Then(routers.PostBook)).Methods("POST")
+	r.Handle("/book/{id}", n.Then(routers.DeleteBook)).Methods("DELETE")
+	r.Handle("/book", n.Then(routers.PutBook)).Methods("PUT")
 
 	log.Fatal(http.ListenAndServe(":8080", r))
 }
