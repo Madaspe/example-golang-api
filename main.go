@@ -10,16 +10,16 @@ import (
 )
 
 func main() {
-	r := mux.NewRouter()
+	router := mux.NewRouter()
 
 	n := mw.Default(gorilla.Vars)
 
-	r.Handle("/", n.Then(routers.Index)).Methods("GET")
+	router.Handle("/", n.Then(routers.Index)).Methods("GET")
 
-	r.Handle("/book/{id}", n.Then(routers.GetBook)).Methods("GET")
-	r.Handle("/book", n.Then(routers.PostBook)).Methods("POST")
-	r.Handle("/book/{id}", n.Then(routers.DeleteBook)).Methods("DELETE")
-	r.Handle("/book", n.Then(routers.PutBook)).Methods("PUT")
+	router.Handle("/book/{id}", n.Then(routers.GetBook)).Methods("GET")
+	router.Handle("/book", n.Then(routers.PostBook)).Methods("POST")
+	router.Handle("/book/{id}", n.Then(routers.DeleteBook)).Methods("DELETE")
+	router.Handle("/book", n.Then(routers.PutBook)).Methods("PUT")
 
-	log.Fatal(http.ListenAndServe(":8080", r))
+	log.Fatal(http.ListenAndServe(":8080", router))
 }

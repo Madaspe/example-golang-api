@@ -13,10 +13,10 @@ import (
 
 var books []*models.Book
 
-func GetBook(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+func GetBook(responseWriter http.ResponseWriter, request *http.Request) {
+	responseWriter.Header().Set("Content-Type", "application/json")
 
-	vars := gorilla.GetVars(r)
+	vars := gorilla.GetVars(request)
 	id, _ := strconv.Atoi(vars["id"])
 
 	neededBook := new(models.Book)
@@ -27,8 +27,8 @@ func GetBook(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if len(neededBook.Title) == 0 {
-		err := json.NewEncoder(w).Encode(models.Message{Message: "not found book"})
-		w.Header()
+		err := json.NewEncoder(responseWriter).Encode(models.Message{Message: "not found book"})
+		responseWriter.Header()
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -36,17 +36,17 @@ func GetBook(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err := json.NewEncoder(w).Encode(neededBook)
+	err := json.NewEncoder(responseWriter).Encode(neededBook)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
-func PostBook(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+func PostBook(responseWriter http.ResponseWriter, request *http.Request) {
+	responseWriter.Header().Set("Content-Type", "application/json")
 
-	body, _ := ioutil.ReadAll(r.Body)
+	body, _ := ioutil.ReadAll(request.Body)
 	book := new(models.Book)
 
 	defer func(Body io.ReadCloser) {
@@ -54,7 +54,7 @@ func PostBook(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Fatal(err)
 		}
-	}(r.Body)
+	}(request.Body)
 
 	err := json.Unmarshal(body, &book)
 
@@ -64,7 +64,7 @@ func PostBook(w http.ResponseWriter, r *http.Request) {
 
 	for _, bookExist := range books {
 		if bookExist.Id == book.Id {
-			err := json.NewEncoder(w).Encode(models.Message{Message: "already exist"})
+			err := json.NewEncoder(responseWriter).Encode(models.Message{Message: "already exist"})
 
 			if err != nil {
 				log.Fatal(err)
@@ -76,23 +76,23 @@ func PostBook(w http.ResponseWriter, r *http.Request) {
 
 	books = append(books, book)
 
-	err = json.NewEncoder(w).Encode(models.Message{Message: "ok"})
+	err = json.NewEncoder(responseWriter).Encode(models.Message{Message: "ok"})
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
-func DeleteBook(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+func DeleteBook(responseWriter http.ResponseWriter, request *http.Request) {
+	responseWriter.Header().Set("Content-Type", "application/json")
 
-	vars := gorilla.GetVars(r)
+	vars := gorilla.GetVars(request)
 	id, _ := strconv.Atoi(vars["id"])
 
 	for index, book := range books {
 		if book.Id == int64(id) {
 			books = append(books[:index], books[index+1:]...)
 
-			err := json.NewEncoder(w).Encode(models.Message{Message: "ok"})
+			err := json.NewEncoder(responseWriter).Encode(models.Message{Message: "ok"})
 
 			if err != nil {
 				log.Fatal(err)
@@ -102,17 +102,17 @@ func DeleteBook(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	err := json.NewEncoder(w).Encode(models.Message{Message: "not found"})
+	err := json.NewEncoder(responseWriter).Encode(models.Message{Message: "not found"})
 
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
-func PutBook(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+func PutBook(responseWriter http.ResponseWriter, request *http.Request) {
+	responseWriter.Header().Set("Content-Type", "application/json")
 
-	body, _ := ioutil.ReadAll(r.Body)
+	body, _ := ioutil.ReadAll(request.Body)
 	book := new(models.Book)
 
 	defer func(Body io.ReadCloser) {
@@ -120,7 +120,7 @@ func PutBook(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Fatal(err)
 		}
-	}(r.Body)
+	}(request.Body)
 
 	err := json.Unmarshal(body, &book)
 
@@ -131,17 +131,16 @@ func PutBook(w http.ResponseWriter, r *http.Request) {
 	for index, bookExist := range books {
 		if bookExist.Id == book.Id {
 			books[index] = book
-			err := json.NewEncoder(w).Encode(models.Message{Message: "ok"})
+			err := json.NewEncoder(responseWriter).Encode(models.Message{Message: "ok"})
 
 			if err != nil {
 				log.Fatal(err)
 			}
-
 			return
 		}
 	}
 
-	err = json.NewEncoder(w).Encode(models.Message{Message: "not found"})
+	err = json.NewEncoder(responseWriter).Encode(models.Message{Message: "not found"})
 	if err != nil {
 		log.Fatal(err)
 	}
