@@ -1,4 +1,4 @@
-module awesomeProject1
+module github.com/Madaspe/simple-messanger-go-api
 
 go 1.16
 

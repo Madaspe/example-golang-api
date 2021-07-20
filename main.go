@@ -1,7 +1,7 @@
 package main
 
 import (
-	routers "awesomeProject1/routers"
+	routers "github.com/Madaspe/simple-messanger-go-api/routers"
 	"github.com/go-noodle/adapt/gorilla"
 	mw "github.com/go-noodle/middleware"
 	"github.com/gorilla/mux"
